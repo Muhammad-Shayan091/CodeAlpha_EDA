@@ -6,7 +6,7 @@
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white)
 
-> A complete Exploratory Data Analysis on the Netflix Movies & TV Shows dataset using Python, Pandas, NumPy and Matplotlib.
+> A complete Exploratory Data Analysis on the Netflix Movies & TV Shows dataset using Python, Pandas, NumPy and Matplotlib — uncovering 20 unique insights!
 
 ---
 
@@ -28,6 +28,10 @@ This project performs a full EDA on Netflix's content library to uncover trends,
 - Which countries produce the most content?
 - How has Netflix grown over the years?
 - What are the most popular genres and ratings?
+- Which actors appear most on Netflix?
+- How do genre trends change over years?
+- What is the best month to release content?
+- How does content vary across decades?
 
 ---
 
@@ -40,11 +44,11 @@ Dataset is **not included** in this repository due to size.
 | Detail | Info |
 |---|---|
 | File Name | `netflix_titles.csv` |
-| Total Rows | ~8,807 titles |
+| Total Rows | ~8,800 titles |
 | Total Columns | 12 |
 | Source | Kaggle — Shivamb |
 
-After downloading, place `netflix_titles.csv` in the same folder as `netflix_eda.py`.
+After downloading, place `netflix_titles.csv` in the same folder as `p.py`.
 
 ---
 
@@ -53,20 +57,25 @@ After downloading, place `netflix_titles.csv` in the same folder as `netflix_eda
 ```
 netflix-eda/
 │
-├── netflix_eda.py        ← Main EDA script
-├── README.md             ← Project documentation
+├── p.py                      ← Main EDA script
+├── README.md                 ← Project documentation
 │
-├── 01_content_type.png   ← Movies vs TV Shows
-├── 02_content_per_year.png
-├── 03_top_countries.png
-├── 04_ratings.png
-├── 05_top_genres.png
-├── 06_movie_duration.png
-├── 07_tv_seasons.png
-├── 08_top_directors.png
-├── 09_monthly_additions.png
-├── 10_release_year.png
-└── 11_correlation.png
+├── 01_content_type.png       ← Movies vs TV Shows
+├── 02_content_per_year.png   ← Content added per year
+├── 03_top_countries.png      ← Top 15 countries
+├── 04_ratings.png            ← Ratings distribution
+├── 05_top_genres.png         ← Top 15 genres
+├── 06_movie_duration.png     ← Movie duration histogram
+├── 07_tv_seasons.png         ← TV show seasons
+├── 08_top_directors.png      ← Top 10 directors
+├── 09_monthly_additions.png  ← Monthly content additions
+├── 10_release_year.png       ← Release year trend
+├── 11_correlation.png        ← Correlation heatmap
+├── 12_top_actors.png         ← Top 10 actors
+├── 13_country_comparison.png ← India vs USA vs Korea
+├── 14_genre_trends.png       ← Genre trends over years
+├── 15_best_month.png         ← Best month to release
+└── 16_content_per_decade.png ← Content per decade
 ```
 
 ---
@@ -90,6 +99,11 @@ netflix-eda/
 | 13 | Release Year Trend |
 | 14 | Correlation Analysis |
 | 15 | Final Insights Summary |
+| 16 | Top Actors Analysis |
+| 17 | India vs USA vs Korea Comparison |
+| 18 | Genre Trends Over Years |
+| 19 | Best Month to Release Content |
+| 20 | Content Per Decade (1950s–2020s) |
 
 ---
 
@@ -102,6 +116,11 @@ netflix-eda/
 - 🎭 **Dramas & Comedies** are the most popular genres
 - ⏱️ Average movie duration is around **90 minutes**
 - 📺 Most TV Shows have only **1 Season**
+- 🎭 **Anupam Kher** is among the most featured actors on Netflix
+- 🇰🇷 **Korea's K-Drama** boom is clearly visible in genre trends
+- 📅 **January & December** are peak months for content addition
+- 📆 **2010s decade** has the most content on Netflix
+- 🔗 Release year & year added have **almost no correlation (0.01)** — Netflix adds old & new content equally
 
 ---
 
@@ -145,7 +164,7 @@ All charts will be automatically saved as PNG files. ✅
 
 ## 👤 Author
 
-Made with ❤️ by **[Muhammad Shayan]**
+Made with ❤️ by **[MUHAMMAD SHAYAN]**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername)
 
