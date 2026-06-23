@@ -40,7 +40,7 @@ Dataset is **not included** in this repository due to size.
 | Detail | Info |
 |---|---|
 | File Name | `netflix_titles.csv` |
-| Total Rows | ~8,800 titles |
+| Total Rows | ~8,807 titles |
 | Total Columns | 12 |
 | Source | Kaggle — Shivamb |
 
