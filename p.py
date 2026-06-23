@@ -215,84 +215,83 @@ print(f"Remaining rows after cleaning: {len(df)}")
 # print("Saved: 05_top_genres.png")
 
 
-# ======================
-# STEP 9: MOVIE DURATION
-# ======================
-print("\n" + "=" * 55)
-print("STEP 9: MOVIE DURATION ANALYSIS")
-print("=" * 55)
+# # ======================
+# # STEP 9: MOVIE DURATION
+# # ======================
+# print("\n" + "=" * 55)
+# print("STEP 9: MOVIE DURATION ANALYSIS")
+# print("=" * 55)
 
-# FILTER ONLY MOVIES USING BOOLEAN INDEXING
-movies = df[df['type'] == 'Movie'].copy()
+# # FILTER ONLY MOVIES USING BOOLEAN INDEXING
+# movies = df[df['type'] == 'Movie'].copy()
 
-# REMOVE MIN TEXT -> CONVERT TO NUMBER 
-movies['duration_min'] = (
-    movies['duration']
-    .str.replace(' min', '', regex=False)
-)
-movies['duration_min'] = pd.to_numeric(movies['duration_min'], errors='coerce')
+# # REMOVE MIN TEXT -> CONVERT TO NUMBER 
+# movies['duration_min'] = (
+#     movies['duration']
+#     .str.replace(' min', '', regex=False)
+# )
+# movies['duration_min'] = pd.to_numeric(movies['duration_min'], errors='coerce')
 
-# DROP ROWS WHERE DURATION COULD NOT BE PARSED
-dur = movies['duration_min'].dropna()
+# # DROP ROWS WHERE DURATION COULD NOT BE PARSED
+# dur = movies['duration_min'].dropna()
 
-# NUMPY FOR THE STATS
-print(f"Total Movies  : {len(dur)}")
-print(f"Minimum       : {np.min(dur):.0f} min")
-print(f"Maximum       : {np.max(dur):.0f} min")
-print(f"Mean (Average): {np.mean(dur):.0f} min")
-print(f"Median        : {np.median(dur):.0f} min")
-print(f"Std Deviation : {np.std(dur):.0f} min")
-print(f"25th Percentile: {np.percentile(dur, 25):.0f} min")
-print(f"75th Percentile: {np.percentile(dur, 75):.0f} min")
+# # NUMPY FOR THE STATS
+# print(f"Total Movies  : {len(dur)}")
+# print(f"Minimum       : {np.min(dur):.0f} min")
+# print(f"Maximum       : {np.max(dur):.0f} min")
+# print(f"Mean (Average): {np.mean(dur):.0f} min")
+# print(f"Median        : {np.median(dur):.0f} min")
+# print(f"Std Deviation : {np.std(dur):.0f} min")
+# print(f"25th Percentile: {np.percentile(dur, 25):.0f} min")
+# print(f"75th Percentile: {np.percentile(dur, 75):.0f} min")
 
-fig, ax = plt.subplots(figsize=(13, 6))
-ax.hist(dur, bins=40, color='#E50914', edgecolor='white')
-ax.axvline(np.mean(dur), color='yellow', linestyle='--', linewidth=2,
-           label=f'Mean: {np.mean(dur):.0f} min')
-ax.set_title('Movie Duration Distribution', fontsize=14, fontweight='bold')
-ax.set_xlabel('Duration (minutes)')
-ax.set_ylabel('Number of Movies')
-ax.legend()
-plt.tight_layout()
-plt.savefig('06_movie_duration.png', dpi=150)
-plt.show()
-print("Saved: 06_movie_duration.png")
+# fig, ax = plt.subplots(figsize=(13, 6))
+# ax.hist(dur, bins=40, color='#E50914', edgecolor='white')
+# ax.axvline(np.mean(dur), color='yellow', linestyle='--', linewidth=2,
+#            label=f'Mean: {np.mean(dur):.0f} min')
+# ax.set_title('Movie Duration Distribution', fontsize=14, fontweight='bold')
+# ax.set_xlabel('Duration (minutes)')
+# ax.set_ylabel('Number of Movies')
+# ax.legend()
+# plt.tight_layout()
+# plt.savefig('06_movie_duration.png', dpi=150)
+# plt.show()
+# print("Saved: 06_movie_duration.png")
 
 
-# ========================
-# STEP 10: TV SHOW SEASONS
-# ========================
-print("\n" + "=" * 55)
-print("STEP 10: TV SHOW SEASONS")
-print("=" * 55)
+# # ========================
+# # STEP 10: TV SHOW SEASONS
+# # ========================
+# print("\n" + "=" * 55)
+# print("STEP 10: TV SHOW SEASONS")
+# print("=" * 55)
 
-shows = df[df['type'] == 'TV Show'].copy()
+# shows = df[df['type'] == 'TV Show'].copy()
 
-# "1 Season" → "1", "2 Seasons" → "2"
-shows['seasons'] = (
-    shows['duration']
-    .str.replace(' Seasons', '', regex=False)
-    .str.replace(' Season', '', regex=False)
-)
-shows['seasons'] = pd.to_numeric(shows['seasons'], errors='coerce')
+# # "1 Season" → "1", "2 Seasons" → "2"
+# shows['seasons'] = (
+#     shows['duration']
+#     .str.replace(' Seasons', '', regex=False)
+#     .str.replace(' Season', '', regex=False)
+# )
+# shows['seasons'] = pd.to_numeric(shows['seasons'], errors='coerce')
 
-season_counts = shows['seasons'].value_counts().sort_index()
-print(season_counts)
+# season_counts = shows['seasons'].value_counts().sort_index()
+# print(season_counts)
 
-fig, ax = plt.subplots(figsize=(12, 6))
-ax.bar(season_counts.index.astype(int), season_counts.values, color='#E50914', edgecolor='white')
-ax.set_title('TV Shows by Number of Seasons', fontsize=14, fontweight='bold')
-ax.set_xlabel('Seasons')
-ax.set_ylabel('Number of Shows')
-plt.tight_layout()
-plt.savefig('07_tv_seasons.png', dpi=150)
-plt.show()
-print("Saved: 07_tv_seasons.png")
+# fig, ax = plt.subplots(figsize=(12, 6))
+# ax.bar(season_counts.index.astype(int), season_counts.values, color='#E50914', edgecolor='white')
+# ax.set_title('TV Shows by Number of Seasons', fontsize=14, fontweight='bold')
+# ax.set_xlabel('Seasons')
+# ax.set_ylabel('Number of Shows')
+# plt.tight_layout()
+# plt.savefig('07_tv_seasons.png', dpi=150)
+# plt.show()
+# print("Saved: 07_tv_seasons.png")
 
-# # ============================================================
+# # ======================
 # # STEP 11: TOP DIRECTORS
-# # Filter out 'Unknown' first, then value_counts()
-# # ============================================================
+# # ======================
 # print("\n" + "=" * 55)
 # print("STEP 11: TOP DIRECTORS")
 # print("=" * 55)
@@ -302,7 +301,7 @@ print("Saved: 07_tv_seasons.png")
 #     .value_counts()
 #     .head(10)
 # )
-# print(top_directors)
+# # ORINT THE TOP DIRECTORS BY CHART
 
 # fig, ax = plt.subplots(figsize=(13, 6))
 # ax.barh(top_directors.index[::-1], top_directors.values[::-1], color='#E50914')
@@ -316,24 +315,25 @@ print("Saved: 07_tv_seasons.png")
 # print("Saved: 08_top_directors.png")
 
 
-# # ============================================================
+# # ==================================
 # # STEP 12: MONTHLY CONTENT ADDITIONS
-# # groupby('month_added').size() → count titles per month
-# # map() → replaces month numbers with month names using a dict
-# # ============================================================
+# # ==================================
 # print("\n" + "=" * 55)
 # print("STEP 12: MONTHLY CONTENT ADDITIONS")
 # print("=" * 55)
 
+# df["date_added_parsed"] = pd.to_datetime(df['date_added'] , format='mixed' , errors='coerce')
+# df['month_added'] = df['date_added_parsed'].dt.month
 # month_map = {1:'Jan',2:'Feb',3:'Mar',4:'Apr',5:'May',6:'Jun',
 #              7:'Jul',8:'Aug',9:'Sep',10:'Oct',11:'Nov',12:'Dec'}
 
 # monthly = (
-#     df.groupby('month_added')
+#     df.dropna(subset=["month_added"])
+#     .groupby("month_added")
 #     .size()                        # count rows per month
 #     .reset_index(name='count')     # rename the count column
 # )
-# # map() replaces each number with its month name from the dict
+# # REPLACE EACH NUMBER WITH IT'S MONTH NAME
 # monthly['month_name'] = monthly['month_added'].map(month_map)
 # print(monthly[['month_name', 'count']])
 
@@ -349,12 +349,9 @@ print("Saved: 07_tv_seasons.png")
 # plt.show()
 # print("Saved: 09_monthly_additions.png")
 
-
-# # ============================================================
+# # ===========================
 # # STEP 13: RELEASE YEAR TREND
-# # groupby + size on release_year — which years had most titles
-# # numpy np.argmax() → finds index of the highest value
-# # ============================================================
+# # ===========================
 # print("\n" + "=" * 55)
 # print("STEP 13: RELEASE YEAR TREND")
 # print("=" * 55)
@@ -375,6 +372,7 @@ print("Saved: 07_tv_seasons.png")
 # fig, ax = plt.subplots(figsize=(13, 6))
 # ax.plot(release_trend['release_year'], release_trend['count'],
 #         color='#E50914', linewidth=2)
+# ax.fill_between(release_trend["release_year"],release_trend["count"], alpha = 0.3 , color = "#E50914")
 # ax.set_title('Number of Titles by Release Year', fontsize=14, fontweight='bold')
 # ax.set_xlabel('Release Year')
 # ax.set_ylabel('Number of Titles')
@@ -384,21 +382,18 @@ print("Saved: 07_tv_seasons.png")
 # print("Saved: 10_release_year.png")
 
 
-# # ============================================================
+# # ============================
 # # STEP 14: CORRELATION (numpy)
-# # np.corrcoef() → computes correlation matrix between arrays
-# # Correlation tells us: do two numbers move together?
-# #   +1 = perfect positive,  -1 = perfect negative, 0 = no link
-# # ============================================================
+# # ============================
 # print("\n" + "=" * 55)
 # print("STEP 14: CORRELATION ANALYSIS (numpy)")
 # print("=" * 55)
 
-# # Drop rows with any NaN in these columns
-# num_df = df[['release_year', 'year_added', 'month_added']].dropna()
+# # DROP ROWS WITH ANY NAN IN THESE COLUMNS
+# num_df = df[['release_year', 'year_added']].dropna()
 
-# # Convert to numpy arrays for np.corrcoef
-# arr = num_df.values.T    # .T transposes so each row = one variable
+# # # CONVERT TO NUMPY ARRAYS
+# arr = num_df.values.T   
 # corr_matrix = np.corrcoef(arr)
 
 # # Build a pandas DataFrame for clean display
@@ -412,12 +407,12 @@ print("Saved: 07_tv_seasons.png")
 
 # fig, ax = plt.subplots(figsize=(7, 5))
 # im = ax.imshow(corr_matrix, cmap='Reds', vmin=-1, vmax=1)
-# ax.set_xticks(range(3))
-# ax.set_yticks(range(3))
+# ax.set_xticks(range(2))
+# ax.set_yticks(range(2))
 # ax.set_xticklabels(num_df.columns, rotation=30)
 # ax.set_yticklabels(num_df.columns)
-# for i in range(3):
-#     for j in range(3):
+# for i in range(2):
+#     for j in range(2):
 #         ax.text(j, i, f"{corr_matrix[i,j]:.2f}", ha='center', va='center',
 #                 fontweight='bold', color='black')
 # plt.colorbar(im, ax=ax)
@@ -428,35 +423,38 @@ print("Saved: 07_tv_seasons.png")
 # print("Saved: 11_correlation.png")
 
 
-# # ============================================================
-# # STEP 15: FINAL SUMMARY
-# # Pure pandas/numpy — aggregate all key numbers in one place
-# # ============================================================
-# print("\n" + "=" * 55)
-# print("STEP 15: FINAL INSIGHTS SUMMARY")
-# print("=" * 55)
+# ============================================================
+# STEP 15: FINAL SUMMARY
+# Pure pandas/numpy — aggregate all key numbers in one place
+# ============================================================
+print("\n" + "=" * 55)
+print("STEP 15: FINAL INSIGHTS SUMMARY")
+print("=" * 55)
 
-# total          = len(df)
-# n_movies       = df[df['type'] == 'Movie'].shape[0]
-# n_shows        = df[df['type'] == 'TV Show'].shape[0]
-# top_country    = df['primary_country'].value_counts().idxmax()
-# top_rating     = df['rating'].value_counts().idxmax()
-# top_genre      = all_genres.value_counts().idxmax()
-# peak_add_year  = int(df['year_added'].value_counts().idxmax())
-# avg_dur        = int(np.mean(movies['duration_min'].dropna()))
+total          = len(df)
+n_movies       = df[df['type'] == 'Movie'].shape[0]
+n_shows        = df[df['type'] == 'TV Show'].shape[0]
+df["primary_country"] = df['country'].str.split(",").str[0].str.strip()
+top_country    = df['primary_country'].value_counts().idxmax()
+top_rating     = df['rating'].value_counts().idxmax()
+all_genres = df["listed_in"].str.split(", ").explode()
+top_genre      = all_genres.value_counts().idxmax()
+peak_add_year  = int(df['year_added'].value_counts().idxmax())
+movies = df[df['type'] == 'Movie'].copy()
+movies["duration_min"] = pd.to_numeric(movies["duration"].str.replace(" min", "", regex=False), errors='coerce')
+avg_dur        = int(np.mean(movies['duration_min'].dropna()))
 
-# print(f"""
-# 🎬 NETFLIX EDA — FINAL SUMMARY
-# {'='*50}
-# Total Titles        : {total:,}
-# Movies              : {n_movies:,}  ({n_movies/total*100:.1f}%)
-# TV Shows            : {n_shows:,}  ({n_shows/total*100:.1f}%)
-# Top Country         : {top_country}
-# Most Common Rating  : {top_rating}
-# Most Common Genre   : {top_genre}
-# Peak Year (Added)   : {peak_add_year}
-# Avg Movie Duration  : {avg_dur} minutes
-# {'='*50}
-# ✅ All 11 charts saved as PNG files in this folder.
-# """)
+print(f"""
+🎬 NETFLIX EDA — FINAL SUMMARY
+{'='*50}
+Total Titles        : {total:,}
+Movies              : {n_movies:,}  ({n_movies/total*100:.1f}%)
+TV Shows            : {n_shows:,}  ({n_shows/total*100:.1f}%)
+Top Country         : {top_country}
+Most Common Rating  : {top_rating}
+Most Common Genre   : {top_genre}
+Peak Year (Added)   : {peak_add_year}
+Avg Movie Duration  : {avg_dur} minutes
+{'='*50}
+""")
 
