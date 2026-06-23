@@ -457,4 +457,4 @@ Peak Year (Added)   : {peak_add_year}
 Avg Movie Duration  : {avg_dur} minutes
 {'='*50}
 """)
-
+print("EDA PROJECT CODE")
