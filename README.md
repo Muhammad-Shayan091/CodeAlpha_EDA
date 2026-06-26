@@ -57,7 +57,7 @@ After downloading, place `netflix_titles.csv` in the same folder as `p.py`.
 ```
 netflix-eda/
 │
-├── p.py                      ← Main EDA script
+├── netflix_titles.py         ← Main EDA script
 ├── README.md                 ← Project documentation
 │
 ├── 01_content_type.png       ← Movies vs TV Shows
